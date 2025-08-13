@@ -2,11 +2,11 @@ name: Test Kind CI
 
 on:
   push:
-    branches: [ main ]  # or the branch you want to test
+    branches: [ main ]
 
 jobs:
   test-kind:
-    runs-on: [self-hosted, kind]  # will run on your local runner
+    runs-on: [self-hosted, kind]
 
     steps:
       - name: Checkout repo
@@ -20,7 +20,7 @@ jobs:
 
       - name: Build test Docker image
         run: |
-          docker build -t howco/devops-dir:test-action-foobarbaz ./api-golang
+          docker build -t howco/devops-dir:test-action-foobarbaz ./api-go
 
       - name: Push test Docker image
         run: |
@@ -32,8 +32,8 @@ jobs:
 
       - name: Deploy test pod
         run: |
-          kubectl create deployment test-action-nginx --image=howco/devops-dir:test-foobarbaz || true
-          kubectl rollout status deployment/test-nginx --timeout=60s
+          kubectl create deployment test-action-nginx --image=howco/devops-dir:test-action-foobarbaz || true
+          kubectl rollout status deployment/test-action-nginx --timeout=60s
 
       - name: Cleanup
         run: |
