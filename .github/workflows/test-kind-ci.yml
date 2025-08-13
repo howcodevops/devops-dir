@@ -20,7 +20,7 @@ jobs:
 
       - name: Build test Docker image
         run: |
-          docker build -t howco/devops-dir:test-action-foobarbaz ./api-go
+          docker build -t howco/devops-dir:test-action-foobarbaz .
 
       - name: Push test Docker image
         run: |
