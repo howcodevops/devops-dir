@@ -20,11 +20,11 @@ jobs:
 
       - name: Build test Docker image
         run: |
-          docker build -t howco/devops-dir:test-foobarbaz ./api-golang
+          docker build -t howco/devops-dir:test-action-foobarbaz ./api-golang
 
       - name: Push test Docker image
         run: |
-          docker push howco/devops-dir:test-foobarbaz
+          docker push howco/devops-dir:test-action-foobarbaz
 
       - name: Set kubectl context to Kind
         run: |
@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy test pod
         run: |
-          kubectl create deployment test-nginx --image=howco/devops-dir:test-foobarbaz || true
+          kubectl create deployment test-action-nginx --image=howco/devops-dir:test-foobarbaz || true
           kubectl rollout status deployment/test-nginx --timeout=60s
 
       - name: Cleanup
